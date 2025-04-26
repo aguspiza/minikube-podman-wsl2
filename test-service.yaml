@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: myipaddress
+  name: myipaddress
+spec:
+  ports:
+  - port: 18080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: myipaddress
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: myipaddress
+  name: myipaddress
+spec:
+  containers:
+  - image: docker.io/peterzandbergen/myipaddress
+    name: myipaddress
+
